@@ -2,8 +2,10 @@ import {
   ArrowRight,
   BadgeCheck,
   BarChart3,
+  BookOpenText,
   BriefcaseBusiness,
   Github,
+  Layers3,
   Mail,
   MapPin,
   PenLine,
@@ -56,8 +58,28 @@ const capabilities = [
   '技术背景转产品判断',
 ];
 
+const articles = [
+  {
+    label: 'Vibe Coding / 架构选择',
+    title: 'Vibe Coding 做产品，先选架构再写代码',
+    source: '人人都是产品经理发布稿',
+    summary:
+      '从一次 AI 小工具返工经历切入，复盘产品经理做 Vibe Coding 时为什么要先定义产品形态、运行环境、数据存储和 MVP 边界，再进入编码。',
+    points: ['架构先行', 'MVP 边界', 'AI 编程协作'],
+  },
+  {
+    label: 'Agent / 产品拆解',
+    title: '别再把 Agent 当聊天框了',
+    source: '人人都是产品经理发布稿',
+    summary:
+      '拆解 Hermes Agent 的产品启发，讨论 Agent 如何从单次对话工具，演进为有长期记忆、执行环境和学习机制的个人工作基础设施。',
+    points: ['长期记忆', '执行环境', 'Agent 飞轮'],
+  },
+];
+
 const navItems = [
   ['作品', '#work'],
+  ['文章', '#articles'],
   ['关于', '#about'],
   ['能力', '#capability'],
   ['联系', '#contact'],
@@ -183,6 +205,38 @@ export default function App() {
                 了解案例
                 <ArrowRight size={16} />
               </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="articles" className="content-section article-section">
+        <div className="section-heading">
+          <p className="eyebrow">Writing</p>
+          <h2>文章与产品思考</h2>
+          <p>用公开文章展示我对 AI 产品、Agent 形态和 Vibe Coding 工作流的持续观察，适合作为项目经历之外的产品判断补充。</p>
+        </div>
+        <div className="article-grid">
+          {articles.map((article) => (
+            <article className="article-card" data-testid="article-card" key={article.title}>
+              <div className="article-card-head">
+                <span>
+                  <BookOpenText size={17} />
+                  {article.label}
+                </span>
+                <span>{article.source}</span>
+              </div>
+              <h3>{article.title}</h3>
+              <p>{article.summary}</p>
+              <div className="article-tags">
+                {article.points.map((point) => (
+                  <span key={point}>{point}</span>
+                ))}
+              </div>
+              <div className="article-status">
+                <Layers3 size={16} />
+                发布链接待补充，当前用于作品集展示
+              </div>
             </article>
           ))}
         </div>

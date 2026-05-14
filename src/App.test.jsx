@@ -18,6 +18,12 @@ describe('portfolio homepage', () => {
     expect(screen.getByRole('heading', { name: /智能审核数字员工/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /AI 穿戴压力管理系统 Unstress/i })).toBeInTheDocument();
 
+    expect(screen.getByRole('link', { name: /文章/i })).toHaveAttribute('href', '#articles');
+    expect(screen.getByRole('heading', { name: /文章与产品思考/i })).toBeInTheDocument();
+    expect(screen.getAllByTestId('article-card')).toHaveLength(2);
+    expect(screen.getByRole('heading', { name: /Vibe Coding 做产品，先选架构再写代码/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /别再把 Agent 当聊天框了/i })).toBeInTheDocument();
+
     expect(screen.getByRole('heading', { name: /能力矩阵/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /联系我/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /lisongyang0130@gmail.com/i })).toHaveAttribute(

@@ -18,7 +18,7 @@
 
 ## 模块说明
 
-- `src/App.jsx`：按 Hero、作品、关于、能力、联系、页脚组织页面内容。
+- `src/App.jsx`：按 Hero、项目作品、文章展示、关于、能力、联系、页脚组织页面内容。
 - `src/styles.css`：集中管理 Apple 风格视觉、卡片、按钮、响应式断点。
 - `gh-pages` 分支：发布 `dist` 构建产物，用于 GitHub Pages。
 - `.superpowers/`：brainstorming 临时可视化文件，已加入 `.gitignore`，不参与部署。
