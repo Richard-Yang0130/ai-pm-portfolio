@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
@@ -6,19 +7,21 @@ import {
   BriefcaseBusiness,
   ExternalLink,
   Github,
-  Layers3,
   Mail,
   MapPin,
   PenLine,
   Sparkles,
 } from 'lucide-react';
+import { articles, woshipmProfileUrl } from './articles.js';
 
 const projects = [
   {
     label: '01 / Agent Workflow',
     title: '企业级智能表格处理助手',
-    summary:
-      '面向企业内部竞标和产品规划场景，拆解多源 Excel 清洗、拼接、异常标记与查询需求，基于 Dify 搭建“自然语言指令 + Agent 自动处理 + 结果可追溯”的工作流。',
+    problem: '企业内部竞标和产品规划需要高频处理多源 Excel，人工清洗、拼接、异常标记耗时且不可追溯。',
+    solution: '从业务流程切入定义 0-1 AI 表格处理助手，设计自然语言指令、任务拆解、结果确认和异常追溯链路。',
+    ai: 'Dify Agent 工作流、多源表格解析、规则校验、可追溯结果输出。',
+    result: '清洗准确率从 70% 提升到 93%，月均处理 600+ 表格，文档数据准备时间缩短 20%。',
     metrics: [
       ['70%→93%', '清洗准确率'],
       ['600+', '月均处理表格'],
@@ -28,8 +31,10 @@ const projects = [
   {
     label: '02 / RAG + LLM',
     title: '智能审核数字员工',
-    summary:
-      '针对企业外宣物料审核流程，联合业务部门梳理 200+ 条审核规则，设计 RAG + LLM + OCR 的多模态审核链路，并输出可解释驳回理由。',
+    problem: '外宣物料审核依赖人工经验，规则多、周期长、跨部门沟通成本高。',
+    solution: '联合业务部门梳理 200+ 条审核规则，定义“上传物料、规则匹配、风险解释、人工确认”的审核产品闭环。',
+    ai: 'RAG 知识检索、LLM 风险判断、OCR 图文识别、多模态审核链路。',
+    result: '审核周期从 5 天缩短到 1 天，违规漏检率为 0，项目获得年度效能创新奖。',
     metrics: [
       ['5天→1天', '审核周期'],
       ['0', '违规漏检率'],
@@ -39,8 +44,10 @@ const projects = [
   {
     label: '03 / AI Product Design',
     title: 'AI 穿戴压力管理系统 Unstress',
-    summary:
-      '调研 12+ 款压力与健康管理竞品，围绕来源识别、个性化干预和预测预警定义产品闭环，设计 HRV、心率、睡眠等数据链路和规则引擎 + LLM 推理方案。',
+    problem: '压力管理产品常停留在数据展示，缺少来源识别、个性化解释和可持续干预闭环。',
+    solution: '基于竞品调研和用户场景，定义从数据采集、基线建立、压力解释到干预建议的完整 AI 产品方案。',
+    ai: 'HRV、睡眠、心率数据边界，规则引擎 + LLM 推理，14 天个人基线。',
+    result: '完成 0-1 产品方案、数据链路和评测思路，沉淀可用于 AI 健康产品验证的 PRD 与原型。',
     metrics: [
       ['12+', '竞品调研'],
       ['9类', '生理数据'],
@@ -50,34 +57,13 @@ const projects = [
 ];
 
 const capabilities = [
-  'AI 项目 0-1',
-  'Agent 工作流设计',
-  'RAG 产品设计',
-  'Dify 原型验证',
-  '评测指标设计',
-  '跨团队推进',
-  '技术背景转产品判断',
-];
-
-const woshipmProfileUrl = 'https://www.woshipm.com/u/1678280';
-
-const articles = [
-  {
-    label: 'Vibe Coding / 架构选择',
-    title: 'Vibe Coding 做产品，先选架构再写代码',
-    source: '人人都是产品经理发布稿',
-    summary:
-      '从一次 AI 小工具返工经历切入，复盘产品经理做 Vibe Coding 时为什么要先定义产品形态、运行环境、数据存储和 MVP 边界，再进入编码。',
-    points: ['架构先行', 'MVP 边界', 'AI 编程协作'],
-  },
-  {
-    label: 'Agent / 产品拆解',
-    title: '别再把 Agent 当聊天框了',
-    source: '人人都是产品经理发布稿',
-    summary:
-      '拆解 Hermes Agent 的产品启发，讨论 Agent 如何从单次对话工具，演进为有长期记忆、执行环境和学习机制的个人工作基础设施。',
-    points: ['长期记忆', '执行环境', 'Agent 飞轮'],
-  },
+  '0-1 AI 产品定义',
+  '业务流程拆解',
+  'Agent/RAG 场景设计',
+  'AI 原型验证',
+  '指标体系与评测',
+  '跨团队落地推进',
+  'AI 产品复盘与迭代',
 ];
 
 const navItems = [
@@ -89,6 +75,15 @@ const navItems = [
 ];
 
 export default function App() {
+  const [selectedArticleSlug, setSelectedArticleSlug] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.location.hash.replace('#article-', '');
+  });
+  const selectedArticle = useMemo(
+    () => articles.find((article) => article.slug === selectedArticleSlug),
+    [selectedArticleSlug],
+  );
+
   return (
     <main className="site-shell antialiased">
       <div className="background-grid" aria-hidden="true" />
@@ -116,10 +111,10 @@ export default function App() {
             <span className="pulse" />
             3 年工作经验 · AI 产品经理求职中
           </div>
-          <h1>把技术背景转化为 AI 产品落地能力</h1>
+          <h1>0-1 AI 产品落地能力</h1>
           <p className="hero-lede">
-            我从嵌入式研发转向 AI 产品，关注 LLM、RAG、Agent 与企业提效场景。
-            已主导企业级智能表格处理助手、智能审核数字员工落地，并独立完成 AI 穿戴压力管理系统 Unstress 的产品方案。
+            我关注的是把 AI 能力变成可上线、可评估、可复用的产品方案：从需求识别、业务流程拆解、AI 方案设计，
+            到原型验证、指标评估和跨团队推进。工程背景帮助我理解技术边界，但主线是 AI 产品从 0 到 1 的落地。
           </p>
           <div className="hero-actions">
             <a className="button-primary" href="#work">
@@ -154,17 +149,17 @@ export default function App() {
             </div>
             <div>
               <strong>2个</strong>
-              <span>企业 AI 落地项目</span>
+              <span>AI 项目落地案例</span>
             </div>
             <div>
               <strong>1套</strong>
-              <span>AI 产品完整方案</span>
+              <span>0-1 产品方案</span>
             </div>
           </div>
           <div className="mini-product">
             <div>
               <span>当前重点</span>
-              <strong>AI 产品经理 · 项目落地展示</strong>
+              <strong>AI 产品经理 · 0-1 落地展示</strong>
             </div>
             <div className="progress-track">
               <span />
@@ -179,7 +174,7 @@ export default function App() {
       </section>
 
       <section className="logo-strip" aria-label="关注方向">
-        {['AI Product', 'LLM', 'RAG', 'Agent', 'Dify', 'Vibe Coding'].map((item) => (
+        {['0-1 AI Product', '业务流程', 'LLM', 'RAG', 'Agent', '指标评测'].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </section>
@@ -188,14 +183,31 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Selected Work</p>
           <h2>精选项目</h2>
-          <p>项目来自真实简历经历，已去除公司名称与私人手机号，仅保留可公开的项目名称、职责和结果指标。</p>
+          <p>项目重点不放在“写了什么代码”，而是展示我如何把业务问题拆成 AI 产品方案，并推进到可验证的落地结果。</p>
         </div>
         <div className="project-grid">
           {projects.map((project, index) => (
             <article className={index === 0 ? 'project-card featured' : 'project-card'} data-testid="project-card" key={project.title}>
               <p className="project-label">{project.label}</p>
               <h3>{project.title}</h3>
-              <p>{project.summary}</p>
+              <div className="project-story">
+                <p>
+                  <strong>业务问题</strong>
+                  {project.problem}
+                </p>
+                <p>
+                  <strong>产品方案</strong>
+                  {project.solution}
+                </p>
+                <p>
+                  <strong>AI 能力组合</strong>
+                  {project.ai}
+                </p>
+                <p>
+                  <strong>落地结果</strong>
+                  {project.result}
+                </p>
+              </div>
               <div className="project-metrics">
                 {project.metrics.map(([value, label]) => (
                   <div key={label}>
@@ -217,7 +229,7 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Writing</p>
           <h2>文章与产品思考</h2>
-          <p>用公开文章展示我对 AI 产品、Agent 形态和 Vibe Coding 工作流的持续观察，适合作为项目经历之外的产品判断补充。</p>
+          <p>文章展示我对 AI 产品形态、Agent 长期协作和 Vibe Coding 工作流的判断。重点是产品方法，而不是开发经验本身。</p>
           <a className="section-link" href={woshipmProfileUrl} target="_blank" rel="noreferrer">
             人人都是产品经理主页
             <ExternalLink size={15} />
@@ -231,36 +243,71 @@ export default function App() {
                   <BookOpenText size={17} />
                   {article.label}
                 </span>
-                <span>{article.source}</span>
+                <span>{article.sourceLabel}</span>
               </div>
               <h3>{article.title}</h3>
               <p>{article.summary}</p>
               <div className="article-tags">
-                {article.points.map((point) => (
+                {article.tags.map((point) => (
                   <span key={point}>{point}</span>
                 ))}
               </div>
               <div className="article-status">
-                <Layers3 size={16} />
-                <a href={woshipmProfileUrl} target="_blank" rel="noreferrer">
-                  查看主页
-                  <ExternalLink size={15} />
+                <a
+                  href={`#article-${article.slug}`}
+                  aria-label={`阅读文章：${article.title}`}
+                  onClick={() => setSelectedArticleSlug(article.slug)}
+                >
+                  阅读文章
+                  <ArrowRight size={15} />
                 </a>
               </div>
             </article>
           ))}
         </div>
+        {selectedArticle && (
+          <article className="article-reader" id={`article-${selectedArticle.slug}`}>
+            <div className="article-reader-head">
+              <p className="eyebrow">Article</p>
+              <h2>{selectedArticle.readerTitle}</h2>
+              <div className="article-reader-actions">
+                <a href={woshipmProfileUrl} target="_blank" rel="noreferrer">
+                  人人都是产品经理主页
+                  <ExternalLink size={15} />
+                </a>
+                {selectedArticle.sourceUrl && (
+                  <a href={selectedArticle.sourceUrl} target="_blank" rel="noreferrer">
+                    原文链接
+                    <ExternalLink size={15} />
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="article-body">
+              {selectedArticle.content.map((block, index) => {
+                if (block.type === 'heading') {
+                  return <h3 key={`${block.text}-${index}`}>{block.text}</h3>;
+                }
+                return (
+                  <p className={block.type === 'lead' ? 'article-lead' : undefined} key={`${block.text}-${index}`}>
+                    {block.text}
+                  </p>
+                );
+              })}
+            </div>
+          </article>
+        )}
       </section>
 
       <section id="about" className="about-section">
         <div>
           <p className="eyebrow">About</p>
-          <h2>某硬科技企业：嵌入式软件开发工程师 → AI 产品经理。</h2>
+          <h2>我关注的是把 AI 能力变成可上线、可评估、可复用的产品方案。</h2>
         </div>
         <div className="about-copy">
           <p>
-            早期负责 Linux/ReWorks 底层驱动适配、通信协议栈和数据采集应用开发，积累了从技术问题定位到跨团队联调的工程经验。
-            转向 AI 产品后，我更关注真实业务流程、工具边界、评测指标和上线后的持续迭代，而不是只展示模型能力。
+            早期工程经历让我能理解系统边界、数据链路和研发协作成本；转向 AI 产品后，我更关注真实业务流程、用户操作路径、
+            AI 能力边界、评测指标和上线后的持续迭代，而不是只展示模型能力。
           </p>
           <div className="about-cards">
             <div>
@@ -271,12 +318,12 @@ export default function App() {
             <div>
               <BadgeCheck size={22} />
               <span>优势</span>
-              <strong>工程背景 + 产品落地</strong>
+              <strong>0-1 AI 产品落地</strong>
             </div>
             <div>
               <PenLine size={22} />
               <span>输出</span>
-              <strong>原型、PRD、评测与复盘</strong>
+              <strong>原型、PRD、指标与复盘</strong>
             </div>
           </div>
         </div>
@@ -286,7 +333,7 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Capability</p>
           <h2>能力矩阵</h2>
-          <p>围绕 AI 产品从需求识别、原型验证、Agent/RAG 方案设计，到灰度测试和数据指标跟踪组织。</p>
+          <p>围绕 AI 产品从业务问题识别、场景边界定义、Agent/RAG 方案设计，到原型验证、指标体系和落地复盘组织。</p>
         </div>
         <div className="capability-grid">
           {capabilities.map((item) => (

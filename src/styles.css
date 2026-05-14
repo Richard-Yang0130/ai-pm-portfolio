@@ -390,7 +390,7 @@ footer span {
   letter-spacing: 0;
 }
 
-.section-heading p:last-child,
+.section-heading > p:not(.eyebrow),
 .about-copy p,
 .contact-section p {
   margin: 0;
@@ -443,10 +443,26 @@ footer span {
   line-height: 1.12;
 }
 
-.project-card p:not(.project-label) {
+.project-card p:not(.project-label),
+.project-story p {
   margin: 0;
   color: rgba(29, 29, 31, 0.7);
   line-height: 1.6;
+}
+
+.project-story {
+  display: grid;
+  gap: 12px;
+}
+
+.project-story p {
+  display: grid;
+  gap: 4px;
+}
+
+.project-story strong {
+  color: #1d1d1f;
+  font-size: 13px;
 }
 
 .project-metrics {
@@ -556,6 +572,69 @@ footer span {
   gap: 7px;
   color: #0066cc;
   font-weight: 720;
+}
+
+.article-reader {
+  margin-top: 24px;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.08);
+}
+
+.article-reader-head {
+  display: grid;
+  gap: 14px;
+  max-width: 820px;
+  margin-bottom: 28px;
+}
+
+.article-reader-head h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.article-reader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.article-reader-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 720;
+}
+
+.article-body {
+  display: grid;
+  gap: 18px;
+  max-width: 820px;
+}
+
+.article-body h3 {
+  margin: 20px 0 0;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.24;
+}
+
+.article-body p {
+  margin: 0;
+  color: rgba(29, 29, 31, 0.74);
+  font-size: 17px;
+  line-height: 1.78;
+}
+
+.article-body .article-lead {
+  color: #1d1d1f;
+  font-size: 19px;
+  font-weight: 650;
 }
 
 .about-section {
