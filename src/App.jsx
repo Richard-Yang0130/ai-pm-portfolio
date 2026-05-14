@@ -4,6 +4,7 @@ import {
   BarChart3,
   BookOpenText,
   BriefcaseBusiness,
+  ExternalLink,
   Github,
   Layers3,
   Mail,
@@ -57,6 +58,8 @@ const capabilities = [
   '跨团队推进',
   '技术背景转产品判断',
 ];
+
+const woshipmProfileUrl = 'https://www.woshipm.com/u/1678280';
 
 const articles = [
   {
@@ -215,6 +218,10 @@ export default function App() {
           <p className="eyebrow">Writing</p>
           <h2>文章与产品思考</h2>
           <p>用公开文章展示我对 AI 产品、Agent 形态和 Vibe Coding 工作流的持续观察，适合作为项目经历之外的产品判断补充。</p>
+          <a className="section-link" href={woshipmProfileUrl} target="_blank" rel="noreferrer">
+            人人都是产品经理主页
+            <ExternalLink size={15} />
+          </a>
         </div>
         <div className="article-grid">
           {articles.map((article) => (
@@ -235,7 +242,10 @@ export default function App() {
               </div>
               <div className="article-status">
                 <Layers3 size={16} />
-                发布链接待补充，当前用于作品集展示
+                <a href={woshipmProfileUrl} target="_blank" rel="noreferrer">
+                  查看主页
+                  <ExternalLink size={15} />
+                </a>
               </div>
             </article>
           ))}

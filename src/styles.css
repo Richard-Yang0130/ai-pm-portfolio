@@ -399,6 +399,16 @@ footer span {
   line-height: 1.62;
 }
 
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: 720;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -538,6 +548,14 @@ footer span {
   color: rgba(29, 29, 31, 0.56);
   font-size: 13px;
   line-height: 1.4;
+}
+
+.article-status a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #0066cc;
+  font-weight: 720;
 }
 
 .about-section {

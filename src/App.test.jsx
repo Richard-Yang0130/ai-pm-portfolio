@@ -23,6 +23,10 @@ describe('portfolio homepage', () => {
     expect(screen.getAllByTestId('article-card')).toHaveLength(2);
     expect(screen.getByRole('heading', { name: /Vibe Coding 做产品，先选架构再写代码/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /别再把 Agent 当聊天框了/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /人人都是产品经理主页|查看主页/i }).length).toBeGreaterThan(0);
+    screen.getAllByRole('link', { name: /人人都是产品经理主页|查看主页/i }).forEach((link) => {
+      expect(link).toHaveAttribute('href', 'https://www.woshipm.com/u/1678280');
+    });
 
     expect(screen.getByRole('heading', { name: /能力矩阵/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /联系我/i })).toBeInTheDocument();
