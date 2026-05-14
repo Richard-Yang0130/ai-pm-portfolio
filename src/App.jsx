@@ -12,36 +12,49 @@ import {
 
 const projects = [
   {
-    label: '01 / RAG Product',
-    title: '企业知识库 AI 助手',
-    summary: '从 0 到 1 设计知识召回、权限边界和反馈闭环，面向销售、客服与运营团队沉淀可复用问答能力。',
+    label: '01 / Agent Workflow',
+    title: '企业级智能表格处理助手',
+    summary:
+      '面向企业内部竞标和产品规划场景，拆解多源 Excel 清洗、拼接、异常标记与查询需求，基于 Dify 搭建“自然语言指令 + Agent 自动处理 + 结果可追溯”的工作流。',
     metrics: [
-      ['78%', '高频问题自动解决'],
-      ['12+', '业务知识域'],
-      ['4w+', '月活跃查询'],
+      ['70%→93%', '清洗准确率'],
+      ['600+', '月均处理表格'],
+      ['20%', '数据准备时间缩短'],
     ],
   },
   {
-    label: '02 / Agent Workflow',
-    title: '多步骤任务 Agent',
-    summary: '把复杂流程拆成可观测节点，定义人工确认点、失败兜底和结果评估，降低业务人员使用门槛。',
+    label: '02 / RAG + LLM',
+    title: '智能审核数字员工',
+    summary:
+      '针对企业外宣物料审核流程，联合业务部门梳理 200+ 条审核规则，设计 RAG + LLM + OCR 的多模态审核链路，并输出可解释驳回理由。',
     metrics: [
-      ['35%', '流程处理提效'],
-      ['8', '核心任务链路'],
+      ['5天→1天', '审核周期'],
+      ['0', '违规漏检率'],
+      ['200+', '审核规则'],
     ],
   },
   {
-    label: '03 / AI Evaluation',
-    title: 'LLM 评测与发布体系',
-    summary: '建立数据集、人工标注、自动评测和灰度发布机制，让 AI 能力迭代从经验判断走向可验证决策。',
+    label: '03 / AI Product Design',
+    title: 'AI 穿戴压力管理系统 Unstress',
+    summary:
+      '调研 12+ 款压力与健康管理竞品，围绕来源识别、个性化干预和预测预警定义产品闭环，设计 HRV、心率、睡眠等数据链路和规则引擎 + LLM 推理方案。',
     metrics: [
-      ['1200+', '评测样本'],
-      ['5', '质量维度'],
+      ['12+', '竞品调研'],
+      ['9类', '生理数据'],
+      ['14天', '个人基线'],
     ],
   },
 ];
 
-const capabilities = ['LLM 应用定义', 'RAG 架构协作', 'Agent 流程设计', '数据分析', '产品评测', '跨团队推进'];
+const capabilities = [
+  'AI 项目 0-1',
+  'Agent 工作流设计',
+  'RAG 产品设计',
+  'Dify 原型验证',
+  '评测指标设计',
+  '跨团队推进',
+  '技术背景转产品判断',
+];
 
 const navItems = [
   ['作品', '#work'],
@@ -55,9 +68,9 @@ export default function App() {
     <main className="site-shell antialiased">
       <div className="background-grid" aria-hidden="true" />
       <nav className="top-nav" aria-label="主导航">
-        <a className="brand" href="#top" aria-label="Richard Yang 首页">
-          <span className="brand-mark">R</span>
-          <span>Richard Yang</span>
+        <a className="brand" href="#top" aria-label="李松洋 首页">
+          <span className="brand-mark">李</span>
+          <span>李松洋</span>
         </a>
         <div className="nav-links">
           {navItems.map(([label, href]) => (
@@ -76,19 +89,19 @@ export default function App() {
         <div className="hero-copy">
           <div className="status-pill">
             <span className="pulse" />
-            Available for 2026 · AI 产品经理求职中
+            3 年工作经验 · AI 产品经理求职中
           </div>
-          <h1>把 AI 能力变成可交付产品</h1>
+          <h1>把技术背景转化为 AI 产品落地能力</h1>
           <p className="hero-lede">
-            我关注 LLM 应用、RAG、Agent 和企业智能化落地。这个作品集用于展示我的产品判断、
-            项目拆解能力和从问题定义到上线验证的完整方法。
+            我从嵌入式研发转向 AI 产品，关注 LLM、RAG、Agent 与企业提效场景。
+            已主导企业级智能表格处理助手、智能审核数字员工落地，并独立完成 AI 穿戴压力管理系统 Unstress 的产品方案。
           </p>
           <div className="hero-actions">
             <a className="button-primary" href="#work">
               查看项目
               <ArrowRight size={18} />
             </a>
-            <a className="button-secondary" href="mailto:hello@example.com">
+            <a className="button-secondary" href="mailto:lisongyang0130@gmail.com">
               <Mail size={18} />
               邮件联系
             </a>
@@ -98,35 +111,35 @@ export default function App() {
         <aside className="profile-panel" aria-label="个人摘要">
           <div className="profile-head">
             <div className="avatar-visual" aria-hidden="true">
-              R
+              李
             </div>
             <div>
               <p className="eyebrow">AI Product Manager</p>
-              <h2>Richard Yang</h2>
+              <h2>李松洋</h2>
               <p className="muted-row">
                 <MapPin size={14} />
-                Shanghai · Remote
+                南京 · 可远程协作
               </p>
             </div>
           </div>
           <div className="metric-grid">
             <div>
-              <strong>3+</strong>
-              <span>AI 项目</span>
+              <strong>3年</strong>
+              <span>工作经验</span>
             </div>
             <div>
-              <strong>6</strong>
-              <span>核心能力</span>
+              <strong>2个</strong>
+              <span>企业 AI 落地项目</span>
             </div>
             <div>
-              <strong>2026</strong>
-              <span>求职目标</span>
+              <strong>1套</strong>
+              <span>AI 产品完整方案</span>
             </div>
           </div>
           <div className="mini-product">
             <div>
               <span>当前重点</span>
-              <strong>AI 产品经理作品集</strong>
+              <strong>AI 产品经理 · 项目落地展示</strong>
             </div>
             <div className="progress-track">
               <span />
@@ -141,7 +154,7 @@ export default function App() {
       </section>
 
       <section className="logo-strip" aria-label="关注方向">
-        {['AI Product', 'LLM', 'RAG', 'Agent', 'Evals', 'B2B SaaS'].map((item) => (
+        {['AI Product', 'LLM', 'RAG', 'Agent', 'Dify', 'Vibe Coding'].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </section>
@@ -150,7 +163,7 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Selected Work</p>
           <h2>精选项目</h2>
-          <p>先用占位项目展示结构，后续可以替换为真实公司、产品、数据和案例链接。</p>
+          <p>项目来自真实简历经历，已去除公司名称与私人手机号，仅保留可公开的项目名称、职责和结果指标。</p>
         </div>
         <div className="project-grid">
           {projects.map((project, index) => (
@@ -178,12 +191,12 @@ export default function App() {
       <section id="about" className="about-section">
         <div>
           <p className="eyebrow">About</p>
-          <h2>我做的不是 AI 玩具，而是能被业务使用的产品。</h2>
+          <h2>某硬科技企业：嵌入式软件开发工程师 → AI 产品经理。</h2>
         </div>
         <div className="about-copy">
           <p>
-            我会从用户任务、业务约束和上线后的衡量指标出发定义 AI 产品，而不是只追模型能力。
-            对我来说，好的 AI 产品需要清晰边界、稳定体验、可解释反馈和可持续迭代机制。
+            早期负责 Linux/ReWorks 底层驱动适配、通信协议栈和数据采集应用开发，积累了从技术问题定位到跨团队联调的工程经验。
+            转向 AI 产品后，我更关注真实业务流程、工具边界、评测指标和上线后的持续迭代，而不是只展示模型能力。
           </p>
           <div className="about-cards">
             <div>
@@ -194,12 +207,12 @@ export default function App() {
             <div>
               <BadgeCheck size={22} />
               <span>优势</span>
-              <strong>问题定义与落地验证</strong>
+              <strong>工程背景 + 产品落地</strong>
             </div>
             <div>
               <PenLine size={22} />
               <span>输出</span>
-              <strong>PRD、案例、复盘</strong>
+              <strong>原型、PRD、评测与复盘</strong>
             </div>
           </div>
         </div>
@@ -209,7 +222,7 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Capability</p>
           <h2>能力矩阵</h2>
-          <p>围绕 AI 产品从 0 到 1、从验证到上线所需的关键能力组织。</p>
+          <p>围绕 AI 产品从需求识别、原型验证、Agent/RAG 方案设计，到灰度测试和数据指标跟踪组织。</p>
         </div>
         <div className="capability-grid">
           {capabilities.map((item) => (
@@ -224,11 +237,11 @@ export default function App() {
       <section id="contact" className="contact-section">
         <p className="eyebrow">Contact</p>
         <h2>联系我</h2>
-        <p>欢迎沟通 AI 产品经理机会、项目案例或作品集内容替换。</p>
+        <p>欢迎沟通 AI 产品经理机会。手机号不放在公网页面，如需完整简历可通过邮件联系。</p>
         <div className="contact-actions">
-          <a className="button-primary" href="mailto:hello@example.com">
+          <a className="button-primary" href="mailto:lisongyang0130@gmail.com">
             <Mail size={18} />
-            hello@example.com
+            lisongyang0130@gmail.com
           </a>
           <a className="button-secondary" href="https://github.com/Richard-Yang0130" target="_blank" rel="noreferrer">
             <Github size={18} />
@@ -238,10 +251,10 @@ export default function App() {
       </section>
 
       <footer>
-        <span>© 2026 Richard Yang</span>
+        <span>© 2026 李松洋</span>
         <span>
           <BarChart3 size={14} />
-          Built for AI PM interviews
+          Built for AI PM interviews · Company names redacted
         </span>
       </footer>
     </main>
