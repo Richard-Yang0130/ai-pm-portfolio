@@ -8,7 +8,6 @@ import {
   ExternalLink,
   Github,
   Mail,
-  MapPin,
   PenLine,
   Sparkles,
 } from 'lucide-react';
@@ -154,10 +153,6 @@ export default function App() {
             <div>
               <p className="eyebrow">AI Product Manager</p>
               <h2>李松洋</h2>
-              <p className="muted-row">
-                <MapPin size={14} />
-                南京 · 可远程协作
-              </p>
             </div>
           </div>
           <div className="metric-grid">
