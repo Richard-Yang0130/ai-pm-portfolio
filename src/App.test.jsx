@@ -13,13 +13,21 @@ describe('portfolio homepage', () => {
     expect(screen.getByRole('navigation')).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { name: /精选项目/i })).toBeInTheDocument();
-    expect(screen.getAllByTestId('project-card')).toHaveLength(3);
+    expect(screen.getAllByTestId('project-card')).toHaveLength(4);
     expect(screen.getByRole('heading', { name: /企业级智能表格处理助手/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /智能审核数字员工/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /AI 穿戴压力管理系统 Unstress/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /职场工具分享平台/i })).toBeInTheDocument();
+    expect(screen.getByText(/SWOT/)).toBeInTheDocument();
+    expect(screen.getByText(/SCQA/)).toBeInTheDocument();
+    expect(screen.getByText(/PDCA/)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /了解案例：AI 穿戴压力管理系统 Unstress/i })).toHaveAttribute(
       'href',
       '/ai-pm-portfolio/cases/unstress/',
+    );
+    expect(screen.getByRole('link', { name: /了解案例：职场工具分享平台/i })).toHaveAttribute(
+      'href',
+      'https://worktoolsshare-jctg6qq9.manus.space/',
     );
 
     expect(screen.getByRole('link', { name: /^文章$/i })).toHaveAttribute('href', '#articles');

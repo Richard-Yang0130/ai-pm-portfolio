@@ -15,6 +15,7 @@ import {
 import { articles, woshipmProfileUrl } from './articles.js';
 
 const unstressCaseUrl = '/ai-pm-portfolio/cases/unstress/';
+const workToolsCaseUrl = 'https://worktoolsshare-jctg6qq9.manus.space/';
 
 const projects = [
   {
@@ -55,6 +56,20 @@ const projects = [
       ['12+', '竞品调研'],
       ['9类', '生理数据'],
       ['14天', '个人基线'],
+    ],
+  },
+  {
+    label: '04 / Product Thinking Tool',
+    title: '职场工具分享平台',
+    problem: '职场分析、汇报和执行常常割裂，缺少从洞察到沟通再到落地的统一方法链路。',
+    solution: '把 SWOT、SCQA、PDCA 组织成可学习、可交互、可下载模板的工具站，降低方法论使用门槛。',
+    ai: '方法论拆解、信息架构、交互模板、工具联动应用。',
+    result: '形成“分析 → 沟通 → 执行”的完整工作流展示，补充产品结构化思考和工具化表达能力。',
+    caseUrl: workToolsCaseUrl,
+    metrics: [
+      ['3类', '核心方法模型'],
+      ['4个', '内容页面'],
+      ['3份', '实用模板'],
     ],
   },
 ];
@@ -186,7 +201,9 @@ export default function App() {
         <div className="section-heading">
           <p className="eyebrow">Selected Work</p>
           <h2>精选项目</h2>
-          <p>项目重点不放在“写了什么代码”，而是展示我如何把业务问题拆成 AI 产品方案，并推进到可验证的落地结果。</p>
+          <p>
+            项目重点不放在“写了什么代码”，而是展示我如何把业务问题拆成 AI 产品方案，并用结构化方法把分析、沟通和执行转成可验证的产品结果。
+          </p>
         </div>
         <div className="project-grid">
           {projects.map((project, index) => (
