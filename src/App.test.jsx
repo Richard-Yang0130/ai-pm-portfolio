@@ -17,6 +17,10 @@ describe('portfolio homepage', () => {
     expect(screen.getByRole('heading', { name: /企业级智能表格处理助手/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /智能审核数字员工/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /AI 穿戴压力管理系统 Unstress/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /了解案例：AI 穿戴压力管理系统 Unstress/i })).toHaveAttribute(
+      'href',
+      '/ai-pm-portfolio/cases/unstress/',
+    );
 
     expect(screen.getByRole('link', { name: /^文章$/i })).toHaveAttribute('href', '#articles');
     expect(screen.getByRole('heading', { name: /文章与产品思考/i })).toBeInTheDocument();

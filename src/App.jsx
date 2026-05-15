@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { articles, woshipmProfileUrl } from './articles.js';
 
+const unstressCaseUrl = '/ai-pm-portfolio/cases/unstress/';
+
 const projects = [
   {
     label: '01 / Agent Workflow',
@@ -48,6 +50,7 @@ const projects = [
     solution: '基于竞品调研和用户场景，定义从数据采集、基线建立、压力解释到干预建议的完整 AI 产品方案。',
     ai: 'HRV、睡眠、心率数据边界，规则引擎 + LLM 推理，14 天个人基线。',
     result: '完成 0-1 产品方案、数据链路和评测思路，沉淀可用于 AI 健康产品验证的 PRD 与原型。',
+    caseUrl: unstressCaseUrl,
     metrics: [
       ['12+', '竞品调研'],
       ['9类', '生理数据'],
@@ -216,7 +219,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <a href="#contact">
+              <a
+                aria-label={`了解案例：${project.title}`}
+                href={project.caseUrl ?? '#contact'}
+                target={project.caseUrl ? '_blank' : undefined}
+                rel={project.caseUrl ? 'noreferrer' : undefined}
+              >
                 了解案例
                 <ArrowRight size={16} />
               </a>
