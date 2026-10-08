@@ -1,10 +1,11 @@
 {
   "status": "verified",
-  "sourceCommit": "e02109df8d7910feaf3d540b1b721f3b62bf46e3",
-  "pagesCommit": "1b95a5e57f4cfa7989ec16469282e8f8b8e1d186",
+  "revision": "original-visuals-no-portraits",
+  "sourceCommit": "6dd5a736f222422e5d8c3e0b49a165f4b5b54747",
+  "pagesCommit": "9226ebddd110b607bd0afb1868daa8acde225cff",
+  "unitTests": 10,
   "url": "https://richard-yang0130.github.io/ai-pm-portfolio/",
   "title": "李松洋 — AI 产品、工具与创作",
-  "hero": "Songyang Li",
   "projects": [
     "华创智擎技术支持平台",
     "AI 合规审核数字员工",
@@ -14,12 +15,35 @@
     "AI 内容价值判断与多平台自动化运营系统"
   ],
   "scripts": [
-    "https://richard-yang0130.github.io/ai-pm-portfolio/assets/index-C-5hhv2q.js"
+    "https://richard-yang0130.github.io/ai-pm-portfolio/assets/index-BbzYR2WC.js"
   ],
-  "audio": {
-    "src": "https://richard-yang0130.github.io/ai-pm-portfolio/audio/blue-hour.wav",
-    "duration": 48
-  },
-  "broken": [],
-  "liveTerminalVerified": true
+  "images": [
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/desktop/original/evaluation-lens.png",
+      "alt": "Lavender evaluation lens with data bars"
+    },
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/desktop/original/laptop.png",
+      "alt": "Cream laptop with abstract code blocks"
+    },
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/desktop/original/chip.png",
+      "alt": "Translucent mint microchip"
+    },
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/projects/content-cover.png",
+      "alt": "Blue Hour cover"
+    },
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/projects/content-cover.png",
+      "alt": "洋说 AI 内容成果"
+    },
+    {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/projects/content-cover.png",
+      "alt": ""
+    }
+  ],
+  "forbiddenNames": false,
+  "audioDuration": 48,
+  "retiredPortraitStatus": 404
 }
