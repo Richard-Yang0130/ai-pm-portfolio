@@ -11,4 +11,4 @@
 - [x] 更新 src/App.test.jsx，先验证新版项目清单和窗口/终端的缺失失败。
 - [x] 制作 Desktop.jsx/desktop.css；App.jsx/styles.css/content.js实现滚动区、窗口、文章和项目详情；用原生 audio 播放本地音轨。
 - [x] npm test与npm run build；Ego查看三视口，交互验证窗口/拖动/音乐/终端/文章/导航，按实际问题修复。
-- [ ] 更新README、PROJECT_STRUCTURE、meta；提交分支，合入现有仓库，发布gh-pages，等待线上返回新页面后确认。
+- [x] 更新README、PROJECT_STRUCTURE、meta；提交分支，合入现有仓库，发布gh-pages，等待线上返回新页面后确认。
