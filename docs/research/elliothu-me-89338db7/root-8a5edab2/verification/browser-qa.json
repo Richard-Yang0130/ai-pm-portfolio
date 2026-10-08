@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "check": "music play / next / continues",
+      "data": {
+        "src": "http://127.0.0.1:5173/ai-pm-portfolio/audio/quiet-desktop.wav",
+        "paused": false,
+        "time": 0.41893,
+        "duration": 48
+      }
+    },
+    {
+      "check": "message prepares email without sending",
+      "pass": true
+    },
+    {
+      "check": "existing article / hash",
+      "hash": "#article-vibe-coding-architecture"
+    },
+    {
+      "check": "resume detail / real public repository",
+      "pass": true
+    },
+    {
+      "check": "object drag avoids app click",
+      "pass": true
+    }
+  ]
+}

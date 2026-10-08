@@ -1,0 +1,19 @@
+{
+  "production": {
+    "title": "李松洋 — AI 产品、工具与创作",
+    "projectCount": 6,
+    "scripts": [
+      "http://127.0.0.1:4173/ai-pm-portfolio/assets/index-C-5hhv2q.js"
+    ],
+    "brokenImages": []
+  },
+  "music": {
+    "duration": 48,
+    "playing": true,
+    "src": "http://127.0.0.1:4173/ai-pm-portfolio/audio/quiet-desktop.wav"
+  },
+  "article": {
+    "title": "我用 Vibe Coding 做了一个 AI 小工具，第一版直接废了",
+    "body": true
+  }
+}

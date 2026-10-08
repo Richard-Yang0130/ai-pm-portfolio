@@ -1,0 +1,52 @@
+[
+  {
+    "check": "desktop biography / folders / memo navigation",
+    "pass": true
+  },
+  {
+    "check": "tablet layout / window / state",
+    "layout": {
+      "width": 768,
+      "scrollWidth": 768,
+      "title": [
+        195.078125,
+        572.921875
+      ],
+      "dock": [
+        195,
+        573
+      ],
+      "horizontalOverflow": false
+    },
+    "bounds": {
+      "x": 31.7982177734375,
+      "y": 331.0744323730469,
+      "right": 749,
+      "bottom": 699.5
+    },
+    "pass": true
+  },
+  {
+    "check": "mobile layout / window / state",
+    "layout": {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": [
+        78.12890625,
+        311.87109375
+      ],
+      "dock": [
+        8,
+        382
+      ],
+      "horizontalOverflow": false
+    },
+    "bounds": {
+      "x": 17.90863037109375,
+      "y": 252.0880126953125,
+      "right": 380,
+      "bottom": 599.5
+    },
+    "pass": true
+  }
+]
