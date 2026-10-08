@@ -16,6 +16,8 @@ describe('Songyang’s desktop portfolio', () => {
     expect(document.body.textContent).not.toMatch(/\b1[3-9]\d{9}\b/);
     expect(screen.queryByRole('heading', { name: 'Elliot Hu' })).not.toBeInTheDocument();
     expect(document.querySelector('a[href="mailto:elliothu.my@gmail.com"]')).toBeNull();
+    expect(document.body).not.toHaveTextContent('Elliot');
+    expect([...document.images].some((image) => /songyang\.jpeg|cat-polaroid|demogorgon|teotfw|kaili|tardis/i.test(image.src))).toBe(false);
     expect(document.body).not.toHaveTextContent('求职中');
   });
 

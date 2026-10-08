@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Brain, CodeXml, FolderKanban, MessageCircle, Paperclip, Pause, Play } from 'lucide-react';
+import { BookOpen, Brain, Check, CodeXml, FileText, FolderKanban, Github, HeartPulse, Images, ListMusic, Mail, MessageCircle, MessagesSquare, Music2, NotebookPen, Paperclip, Pause, Play, SkipBack, SkipForward, SquareTerminal } from 'lucide-react';
 import './desktop.css';
 
-const asset = (path) => `${import.meta.env.BASE_URL}desktop/desktop/${path}`;
-const portrait = `${import.meta.env.BASE_URL}profile/songyang.jpeg`;
+const asset = (path) => `${import.meta.env.BASE_URL}desktop/original/${path}`;
 
 function DraggableObject({ id, label, onOpen, children, group = false }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -137,8 +136,8 @@ function IPod({ music, onOpen }) {
   const { playing = false, elapsed = 0, duration = 0, track, onToggle, onNext, onPrevious } = music ?? {};
   const progress = duration > 0 ? Math.min(100, Math.max(0, elapsed / duration * 100)) : 0;
   return (
-    <DraggableObject id="ipod" label="Move and open iPod" onOpen={onOpen} group>
-      <div className="ipod-body" style={{ '--ipod-texture': `url("${asset('figpod/texture.webp')}")` }}>
+    <DraggableObject id="ipod" label="Move and open music player" onOpen={onOpen} group>
+      <div className="ipod-body">
         <button data-desktop-control type="button" className="ipod-screen" aria-label="Open Music" onClick={onOpen}>
           <span className="ipod-status">
             <strong>Now playing</strong>
@@ -146,7 +145,7 @@ function IPod({ music, onOpen }) {
             <i className="ipod-battery" aria-hidden="true" />
           </span>
           <span className="ipod-album">
-            {track?.cover ? <img src={track.cover} alt={track.title ? `${track.title} cover` : 'Album cover'} draggable={false} /> : <span className="ipod-cover-placeholder"><Play size={40} /></span>}
+            {track?.cover ? <img src={track.cover} alt={track.title ? `${track.title} cover` : 'Album cover'} draggable={false} /> : <span className="ipod-cover-placeholder"><Music2 size={40} /></span>}
             <span className="ipod-track">
               <strong>{track?.title || 'Music'}</strong>
               <span>{track?.artist || '选择一首歌'}</span>
@@ -156,11 +155,10 @@ function IPod({ music, onOpen }) {
           </span>
         </button>
         <div className="ipod-wheel">
-          <img src={asset('figpod/icon-1.svg')} alt="" aria-hidden="true" draggable={false} />
-          <button data-desktop-control type="button" className="wheel-menu" aria-label="Menu" onClick={onOpen}><span>MENU</span></button>
-          <button data-desktop-control type="button" className="wheel-previous" aria-label="Previous track" onClick={onPrevious} disabled={!onPrevious}><img src={asset('figpod/icon-6.svg')} alt="" aria-hidden="true" draggable={false} /></button>
-          <button data-desktop-control type="button" className="wheel-next" aria-label="Next track" onClick={onNext} disabled={!onNext}><img src={asset('figpod/icon-5.svg')} alt="" aria-hidden="true" draggable={false} /></button>
-          <button data-desktop-control type="button" className="wheel-play" aria-label={playing ? 'Pause' : 'Play'} onClick={onToggle} disabled={!onToggle}><img src={asset('figpod/icon-4.svg')} alt="" aria-hidden="true" draggable={false} /></button>
+          <button data-desktop-control type="button" className="wheel-menu" aria-label="Menu" onClick={onOpen}><ListMusic size={9} /></button>
+          <button data-desktop-control type="button" className="wheel-previous" aria-label="Previous track" onClick={onPrevious} disabled={!onPrevious}><SkipBack size={9} fill="currentColor" /></button>
+          <button data-desktop-control type="button" className="wheel-next" aria-label="Next track" onClick={onNext} disabled={!onNext}><SkipForward size={9} fill="currentColor" /></button>
+          <button data-desktop-control type="button" className="wheel-play" aria-label={playing ? 'Pause' : 'Play'} onClick={onToggle} disabled={!onToggle}>{playing ? <Pause size={9} fill="currentColor" /> : <Play size={9} fill="currentColor" />}</button>
           <button data-desktop-control type="button" className="wheel-select" aria-label="Select" onClick={onOpen} />
         </div>
       </div>
@@ -169,17 +167,17 @@ function IPod({ music, onOpen }) {
 }
 
 const dockApps = [
-  { label: 'Music', icon: 'itunes', open: 'music' },
-  { label: 'Mail', icon: 'mail', href: 'mailto:lisongyang0130@gmail.com' },
-  { label: 'Messages', icon: 'messages', open: 'messages' },
-  { label: 'Notes', icon: 'notes', open: 'notes' },
-  { label: 'Photos', icon: 'photos', open: 'photos' },
-  { label: 'Terminal', icon: 'terminal', open: 'terminal' },
-  { label: 'Blog', icon: 'pages', open: 'reading' },
-  { label: 'Projects', custom: 'projects', open: 'projects' },
-  { label: 'GitHub', icon: 'github', href: 'https://github.com/Richard-Yang0130' },
-  { label: '公众号', custom: 'wechat', open: 'profile' },
-  { label: '小红书', custom: 'xiaohongshu', open: 'profile' },
+  { label: 'Music', Icon: Music2, theme: 'music', open: 'music' },
+  { label: 'Mail', Icon: Mail, theme: 'mail', href: 'mailto:lisongyang0130@gmail.com' },
+  { label: 'Messages', Icon: MessageCircle, theme: 'messages', open: 'messages' },
+  { label: 'Notes', Icon: NotebookPen, theme: 'notes', open: 'notes' },
+  { label: 'Photos', Icon: Images, theme: 'photos', open: 'photos' },
+  { label: 'Terminal', Icon: SquareTerminal, theme: 'terminal', open: 'terminal' },
+  { label: 'Blog', Icon: FileText, theme: 'blog', open: 'reading' },
+  { label: 'Projects', Icon: FolderKanban, theme: 'projects', open: 'projects' },
+  { label: 'GitHub', Icon: Github, theme: 'github', href: 'https://github.com/Richard-Yang0130' },
+  { label: '公众号', Icon: MessagesSquare, theme: 'wechat', open: 'profile' },
+  { label: '小红书', Icon: BookOpen, theme: 'xiaohongshu', open: 'profile' },
 ];
 
 function Dock({ onOpen }) {
@@ -205,11 +203,7 @@ function Dock({ onOpen }) {
               onAnimationEnd={() => setBouncing(null)}
               onClick={() => { setBouncing(app.label); if (app.open) onOpen?.(app.open); }}
             >
-              {app.icon ? <img src={asset(`apps/${app.icon}.webp`)} alt="" aria-hidden="true" draggable={false} /> : (
-                <span className={`dock-custom dock-${app.custom}`} aria-hidden="true">
-                  {app.custom === 'projects' ? <FolderKanban strokeWidth={1.7} /> : app.custom === 'wechat' ? <><MessageCircle className="wechat-large" fill="currentColor" /><MessageCircle className="wechat-small" fill="currentColor" /></> : <span>小红书</span>}
-                </span>
-              )}
+              <span className={`dock-art dock-${app.theme}`} aria-hidden="true"><app.Icon strokeWidth={1.7} /></span>
             </Control>
             <span className="dock-tooltip" aria-hidden="true">{app.label}</span>
           </div>
@@ -221,12 +215,11 @@ function Dock({ onOpen }) {
 
 export default function Desktop({ onOpen, onNavigate, music }) {
   const open = (name) => () => onOpen?.(name);
-  const terminalLines = ['SONGYANG/OS', '> boot portfolio', 'agent runtime: ready', '> build useful things', '> _'];
   return (
     <section className="desktop" data-testid="desktop" aria-label="李松洋的桌面">
-      <div className="desktop-wallpaper" aria-hidden="true"><img className="desktop-clouds" src={asset('decor/lofty-cloud.webp')} alt="" draggable={false} /></div>
+      <div className="desktop-wallpaper" aria-hidden="true"><i /><i /></div>
       <div className="desktop-introduction" aria-label="Introduction">
-        <p className="desktop-greeting">Hi, I am</p>
+        <p className="desktop-greeting">Hi, I’m</p>
         <div className="desktop-name">
           <i className="name-handle top-left" /><i className="name-handle top-right" /><i className="name-handle bottom-left" /><i className="name-handle bottom-right" />
           <h1><button type="button" aria-label="About Songyang Li" onClick={() => onNavigate?.('about')}>Songyang Li</button></h1>
@@ -235,18 +228,13 @@ export default function Desktop({ onOpen, onNavigate, music }) {
         <IdentityTag className="identity-agents" Icon={Brain} onClick={() => onNavigate?.('projects')}>Agents &amp; Product</IdentityTag>
       </div>
       <div className="desktop-objects" data-testid="desktop-decor">
-        <DraggableObject id="camera" label="Move and open camera" onOpen={open('photos')}><img className="decor-art" src={asset('decor/fujifilm-xpro3-silver.webp')} alt="Silver Fujifilm X-Pro3 camera" draggable={false} /></DraggableObject>
-        <DraggableObject id="macintosh" label="Move and open Macintosh" onOpen={open('terminal')}>
-          <div className="macintosh-art decor-art">
-            <img src={asset('decor/macintosh-clean.webp')} alt="Vintage Macintosh" draggable={false} />
-            <span className="macintosh-screen" aria-hidden="true"><span className="macintosh-lines">{[...terminalLines, ...terminalLines].map((line, i) => <span key={i}>{line}</span>)}</span></span>
-          </div>
-        </DraggableObject>
-        <DraggableObject id="tardis" label="Move and open TARDIS" onOpen={open('projects')}><img className="decor-art" src={asset('decor/tardis-clean.webp')} alt="TARDIS" draggable={false} /><span className="tardis-light" aria-hidden="true" /></DraggableObject>
-        <DraggableObject id="portrait" label="Move and open portrait" onOpen={open('profile')}><div className="portrait-polaroid decor-art"><img src={portrait} alt="李松洋" draggable={false} /><span>Li Songyang</span></div></DraggableObject>
-        <DraggableObject id="demogorgon" label="Move and open Demogorgon" onOpen={open('projects')}><img className="decor-art decor-default" src={asset('decor/demogorgon-closed-clean.webp')} alt="Demogorgon" draggable={false} /><img className="decor-art decor-hover" src={asset('decor/demogorgon-open-clean.webp')} alt="" aria-hidden="true" draggable={false} /></DraggableObject>
-        <DraggableObject id="roadside" label="Move and open roadside figure" onOpen={open('profile')}><img className="decor-art" src={asset('decor/kaili-bucket-figure-clean.webp')} alt="A figure with a blue bucket" draggable={false} /></DraggableObject>
-        <DraggableObject id="teotfw" label="Move and open beach figures" onOpen={open('reading')}><img className="decor-art decor-default" src={asset('decor/teotfw-beach-clean.webp')} alt="Two figures on a beach" draggable={false} /><img className="decor-art decor-hover" src={asset('decor/teotfw-beach-holding-hands.webp')} alt="" aria-hidden="true" draggable={false} /></DraggableObject>
+        <DraggableObject id="evaluation" label="Move and open evaluation lens" onOpen={open('project:modellens')}><img className="decor-art" src={asset('evaluation-lens.png')} alt="Lavender evaluation lens with data bars" draggable={false} /><span className="object-caption">ModelLens</span></DraggableObject>
+        <DraggableObject id="laptop" label="Move and open laptop" onOpen={open('terminal')}><img className="decor-art" src={asset('laptop.png')} alt="Cream laptop with abstract code blocks" draggable={false} /><span className="object-caption">Terminal</span></DraggableObject>
+        <DraggableObject id="chip" label="Move and open embedded chip" onOpen={open('project:embedded')}><img className="decor-art" src={asset('chip.png')} alt="Translucent mint microchip" draggable={false} /><span className="object-caption">Embedded systems</span></DraggableObject>
+        <DraggableObject id="health" label="Move and open Aevis health orb" onOpen={open('project:aevis')}><div className="health-art decor-art"><div className="health-orbit" /><div className="health-globe"><HeartPulse strokeWidth={1.25} /><span className="health-spark" /></div><span className="health-base" /><strong>aevis</strong></div><span className="object-caption">Aevis · AI Health</span></DraggableObject>
+        <DraggableObject id="draft" label="Move and open article draft" onOpen={open('reading')}><div className="article-prop decor-art"><span className="paper-kicker">PRODUCT NOTES</span><strong>洋说 AI</strong><span className="paper-subtitle">记录产品，也记录思考。</span><div className="paper-lines"><i /><i /><i /><i /><i /></div><FileText className="paper-seal" /></div><span className="object-caption">文章与思考</span></DraggableObject>
+        <DraggableObject id="note" label="Move and open PRD note" onOpen={open('notes')}><div className="prd-prop decor-art"><Paperclip className="note-clip" strokeWidth={1.3} /><strong>PRD</strong><span><Check />需求</span><span><Check />场景</span><span><Check />验证</span></div><span className="object-caption">产品便笺</span></DraggableObject>
+        <DraggableObject id="folder" label="Move and open project folder" onOpen={open('projects')}><div className="folder-prop decor-art"><span className="desktop-folder-paper"><i /><i /><i /></span><span className="desktop-folder-front"><FolderKanban /><strong>Projects</strong></span></div><span className="object-caption">项目</span></DraggableObject>
         <IPod music={music} onOpen={open('music')} />
       </div>
       <Dock onOpen={onOpen} />

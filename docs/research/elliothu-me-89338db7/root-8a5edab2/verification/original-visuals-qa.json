@@ -1,0 +1,47 @@
+[
+  {
+    "desktopOriginalAssets": true,
+    "gallery": [
+      "http://127.0.0.1:4173/ai-pm-portfolio/projects/content-cover.png",
+      "http://127.0.0.1:4173/ai-pm-portfolio/desktop/original/evaluation-lens.png",
+      "http://127.0.0.1:4173/ai-pm-portfolio/desktop/original/laptop.png"
+    ]
+  },
+  {
+    "music": true
+  },
+  {
+    "viewport": "tablet",
+    "metrics": {
+      "width": 768,
+      "title": [
+        195.078125,
+        572.921875
+      ],
+      "dock": [
+        195,
+        573
+      ],
+      "overflow": false,
+      "folderHeight": "44.4531px"
+    },
+    "terminal": true
+  },
+  {
+    "viewport": "mobile",
+    "metrics": {
+      "width": 390,
+      "title": [
+        78.12890625,
+        311.87109375
+      ],
+      "dock": [
+        8,
+        382
+      ],
+      "overflow": false,
+      "folderHeight": "44.4531px"
+    },
+    "terminal": true
+  }
+]

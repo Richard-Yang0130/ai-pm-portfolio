@@ -10,26 +10,35 @@ describe('desktop interaction', () => {
   it('opens on a click, moves on a drag, and does not open after dragging', () => {
     const onOpen = vi.fn();
     render(<Desktop onOpen={onOpen} />);
-    const camera = screen.getByRole('button', { name: 'Move and open camera' });
-    fireEvent.click(camera);
-    expect(onOpen).toHaveBeenCalledWith('photos');
+    const lens = screen.getByRole('button', { name: 'Move and open evaluation lens' });
+    fireEvent.click(lens);
+    expect(onOpen).toHaveBeenCalledWith('project:modellens');
     onOpen.mockClear();
 
-    fireEvent.pointerDown(camera, { button: 0, clientX: 100, clientY: 100 });
-    fireEvent.pointerMove(camera, { clientX: 140, clientY: 120 });
-    fireEvent.pointerUp(camera, { clientX: 140, clientY: 120 });
-    fireEvent.click(camera);
-    expect(camera.style.getPropertyValue('--move-x')).toBe('40px');
-    expect(camera.style.getPropertyValue('--move-y')).toBe('20px');
+    fireEvent.pointerDown(lens, { button: 0, clientX: 100, clientY: 100 });
+    fireEvent.pointerMove(lens, { clientX: 140, clientY: 120 });
+    fireEvent.pointerUp(lens, { clientX: 140, clientY: 120 });
+    fireEvent.click(lens);
+    expect(lens.style.getPropertyValue('--move-x')).toBe('40px');
+    expect(lens.style.getPropertyValue('--move-y')).toBe('20px');
     expect(onOpen).not.toHaveBeenCalled();
 
-    fireEvent.keyDown(camera, { key: 'ArrowRight', shiftKey: true });
-    expect(camera.style.getPropertyValue('--move-x')).toBe('60px');
-    fireEvent.keyDown(camera, { key: 'Enter' });
-    expect(onOpen).toHaveBeenCalledWith('photos');
+    fireEvent.keyDown(lens, { key: 'ArrowRight', shiftKey: true });
+    expect(lens.style.getPropertyValue('--move-x')).toBe('60px');
+    fireEvent.keyDown(lens, { key: 'Enter' });
+    expect(onOpen).toHaveBeenCalledWith('project:modellens');
     fireEvent(window, new Event('resize'));
-    expect(camera.style.getPropertyValue('--move-x')).toBe('0px');
-    expect(camera.style.getPropertyValue('--move-y')).toBe('0px');
+    expect(lens.style.getPropertyValue('--move-x')).toBe('0px');
+    expect(lens.style.getPropertyValue('--move-y')).toBe('0px');
+  });
+
+  it('opens the user’s projects and writing from their matching original props', () => {
+    const onOpen = vi.fn();
+    render(<Desktop onOpen={onOpen} />);
+    for (const [label, target] of [['Move and open laptop', 'terminal'], ['Move and open embedded chip', 'project:embedded'], ['Move and open Aevis health orb', 'project:aevis'], ['Move and open article draft', 'reading'], ['Move and open PRD note', 'notes'], ['Move and open project folder', 'projects']]) {
+      fireEvent.click(screen.getByRole('button', { name: label }));
+      expect(onOpen).toHaveBeenLastCalledWith(target);
+    }
   });
 
   it('connects Dock applications and navigation to the supplied callbacks', () => {
@@ -65,12 +74,14 @@ describe('desktop interaction', () => {
     expect(onOpen).toHaveBeenCalledWith('music');
   });
 
-  it('only references local assets that exist and has no reference-owner identity', () => {
+  it('uses only the three original PNG props and has no portrait or reference-owner content', () => {
     const { container } = render(<Desktop />);
+    expect(container.querySelectorAll('img')).toHaveLength(3);
     for (const image of container.querySelectorAll('img')) {
       const path = image.getAttribute('src').replace(import.meta.env.BASE_URL, '');
       expect(existsSync(resolve('public', path)), path).toBe(true);
+      expect(path).toMatch(/^desktop\/original\/(laptop|chip|evaluation-lens)\.png$/);
     }
-    expect(container).not.toHaveTextContent(/Elliot|ELLIOT|elliothux/);
+    expect(container.innerHTML).not.toMatch(/Elliot|elliothux|portrait|avatar|fujifilm|macintosh|tardis|demogorgon|beach|bucket|desktop\/desktop|lofty-cloud|figpod/i);
   });
 });

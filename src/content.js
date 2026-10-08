@@ -7,7 +7,6 @@ export const profile = {
   email: 'lisongyang0130@gmail.com',
   github: 'https://github.com/Richard-Yang0130',
   description: '做 AI 产品，也自己动手把想法做成工具。我关注 Agent、模型评测和 AI 内容生产，喜欢从真实问题出发，弄清楚它该怎么用，再把产品做出来、测清楚。',
-  avatar: asset('profile/songyang.jpeg'),
 };
 
 export const projects = [
@@ -59,8 +58,6 @@ export const projects = [
     problem: '多窗口手动试模型，输入、参数和评分标准往往不一致。单次回答和品牌印象很容易左右选型判断。',
     approach: ['建立“评测集—实验控制—多维评分—人工复核—指标分析—选型报告”的流程，保留实验参数快照。', '组合规则评分、LLM-as-a-Judge、人工复核和匿名 A/B 盲测，允许按业务定义 Rubric 和权重。', '同时看质量、通过率、分数波动、成本与 P95 延迟，用约束筛选和 Pareto 分析帮助做决定。'],
     result: '完成可自部署的文本模型评测与选型工具，支持重复运行、结果复核和选型报告。',
-    image: asset('projects/modellens.png'),
-    imageCaption: '产品概览，使用合成演示数据。',
     url: 'https://github.com/Richard-Yang0130/modellens',
     thumbnail: 'modellens',
   },
@@ -87,5 +84,5 @@ export const notes = [
 
 export const tracks = [
   { title: 'Blue Hour', artist: '本站氛围音乐', cover: asset('projects/content-cover.png'), src: asset('audio/blue-hour.wav') },
-  { title: 'Quiet Desktop', artist: '本站氛围音乐', cover: asset('projects/modellens.png'), src: asset('audio/quiet-desktop.wav') },
+  { title: 'Quiet Desktop', artist: '本站氛围音乐', cover: asset('desktop/original/evaluation-lens.png'), src: asset('audio/quiet-desktop.wav') },
 ];

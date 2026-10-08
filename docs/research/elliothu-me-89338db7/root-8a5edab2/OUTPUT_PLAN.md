@@ -1,35 +1,13 @@
-# 个站改版范围
+# 个站最终范围
 
-参考：https://elliothu.me/
-目标：李松洋 GitHub Pages 个站 /ai-pm-portfolio/，保留 Vite、React、既有站内文章和旧案例 URL。
-根目录：outputs/personal-site，独立 Git worktree，分支 codex/desktop-portfolio。
+李松洋现有 GitHub Pages 个站 /ai-pm-portfolio/，沿用 React/Vite、旧文章正文与旧案例地址。
 
-用户已指定一比一复刻外观，内容按最新版简历六项项目；这构成设计方向和首页改版的授权。
+用户最终要求：不使用头像，不复制参考作者的个人照片、内容和影视摆件。保留可交互桌面、应用窗口、手写标签和文件夹项目的结构，围绕自己的 AI 产品、评测和内容创作重新设计视觉。
 
-## 页面
-- 首屏：蓝天、流动云朵、手写问候、压缩大标题 Songyang Li、两个身份标签、原版桌面道具的布置与拖动、可点选的 iPod、玻璃 Dock。作者头像和个人照片替换为李松洋真实照片；所有作者履历/作品/文章/联系地址替换。通用摆件用作装饰，不作为个人爱好陈述。
-- 滚动区：超大自我介绍、带编辑选择框的倾斜个人简介和经历、彩色波浪底的文件夹项目卡片。
-- 项目：华创智擎技术支持平台、AI 合规审核数字员工、机载雷达嵌入式高可靠系统；Aevis、ModelLens、AI 内容价值判断与多平台自动化运营系统。按企业产品与个人项目两组呈现，卡片点开真实项目详情。
-- 便笺与文章：个人内容便笺；已有两篇文章正文保留，文章可以站内阅读。没有外部数据的访客来信通过邮件编辑器交给访客确认发送。
-- 窗口：Music、Messages、Notes、Photos、Terminal、项目与文章；支持打开、拖动、关闭、最小化、放大、Escape 和键盘可访问性。
-- 终端：help/whoami/projects/reading/contact/clear/navigation，浏览器内命令，不执行任意代码。
-- 音乐：本站本地氛围音轨，支持播放暂停、切歌、进度和音量，不声称是用户收藏。
+个人身份与六个项目来自李松洋最新简历；没有真实图片的项目使用原创方案示意。移除署名为第三方的旧 ModelLens 配图，改为本站 CSS 评测图示。
 
-## 约束
-- 沿用已有 GitHub Pages base，所有资产本地路径，不依赖参考站运行时或业务 API。
-- 六项项目来自最新简历；不增加简历之外的项目、不捏造 Aevis 实机截图、不转用 Elliot 的肖像和作品。
-- 沿用原站公开邮箱和 GitHub；公众号/小红书只有名称，展示为账号名称，不捏造 URL。
-- 手机号不进入公开源码/简历下载；公开简历不额外复制。
-- 390/768/1440 三种宽度验证，窗口在小屏幕内，reduced-motion 生效。
+首屏资产全部是本站生成的原创 PNG 或 CSS/lucide 图形。通用字体保留。页面不显示真实人像；当前发布资源不包含头像、参考站人物/壁纸/应用图。
 
-## 实施位置
-- src/Desktop.jsx, src/desktop.css：首屏桌面（独立 Agent）。
-- src/App.jsx, src/styles.css：滚动内容、应用窗口与集成（主 Agent）。
-- src/content.js：经过核实的个人资料与六项项目。
-- src/articles.js：沿用。
-- src/App.test.jsx：更新旧验收，加入窗口、终端与项目事实的行为测试。
-- public/desktop, public/profile, public/projects, public/audio：冻结本地素材。
-- index.html, README.md, PROJECT_STRUCTURE.md：用户身份和运行说明。
+src/Desktop.jsx 与 desktop.css 管理首屏，App.jsx 与 styles.css 管理个人内容和窗口，content.js 管理事实内容，articles.js 沿用既有正文。
 
-## 验收
-构建和单元行为通过；Ego 验证首屏/滚动/窗口/拖动/音乐/终端/文章和三种视口；生成可审查截图，再提交 GitHub 代码与 Pages 发布，确认线上内容。
+验收：10 项行为测试、生产构建、1440/768/390 视口、无头像/原作者内容、窗口/音乐/终端/文章/项目功能，以及线上发布回读。
