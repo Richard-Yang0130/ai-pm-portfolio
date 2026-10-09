@@ -30,7 +30,8 @@ export default function WindowFrame({ title, kind, order, minimized, onClose, on
     if (!drag.current || event.pointerId !== drag.current.pointer) return;
     const bounds = frame.current.getBoundingClientRect();
     const maxX = Math.max(0, (window.innerWidth - bounds.width) / 2 - 8);
-    const maxY = Math.max(0, (window.innerHeight - bounds.height) / 2 - 42);
+    const menuBottom = document.querySelector('.menu-bar')?.getBoundingClientRect().bottom || 34;
+    const maxY = Math.max(0, (window.innerHeight - bounds.height) / 2 - menuBottom - 8);
     setPosition({
       x: Math.max(-maxX, Math.min(maxX, drag.current.offset.x + event.clientX - drag.current.startX)),
       y: Math.max(-maxY, Math.min(maxY, drag.current.offset.y + event.clientY - drag.current.startY)),

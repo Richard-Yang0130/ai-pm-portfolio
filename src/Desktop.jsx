@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { BookOpen, Brain, Check, CodeXml, FileText, FolderKanban, Github, HeartPulse, Images, ListMusic, Mail, MessageCircle, MessagesSquare, Music2, NotebookPen, Paperclip, Pause, Play, SkipBack, SkipForward, SquareTerminal } from 'lucide-react';
+import { ListMusic, Music2, Pause, Play, SkipBack, SkipForward } from 'lucide-react';
 import './desktop.css';
 
-const asset = (path) => `${import.meta.env.BASE_URL}desktop/original/${path}`;
+// Keep the approved artwork intact; each sprite remains a separate live control.
+function CollageArt({ name }) {
+  return <span className={`collage-art art-${name}`} aria-hidden="true" />;
+}
+
+function sceneScale(element) {
+  const scene = element.closest('.desktop-scene');
+  return scene?.offsetWidth ? scene.getBoundingClientRect().width / scene.offsetWidth : 1;
+}
 
 function DraggableObject({ id, label, onOpen, children, group = false }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -34,6 +42,7 @@ function DraggableObject({ id, label, onOpen, children, group = false }) {
       position,
       rect,
       bounds,
+      scale: sceneScale(event.currentTarget),
       moved: false,
     };
     event.currentTarget.setPointerCapture?.(event.pointerId);
@@ -51,7 +60,7 @@ function DraggableObject({ id, label, onOpen, children, group = false }) {
       y = Math.max(current.bounds.top + 34 - current.rect.top, Math.min(current.bounds.bottom - 82 - current.rect.bottom, y));
     }
     setDragging(true);
-    setPosition({ x: current.position.x + x, y: current.position.y + y });
+    setPosition({ x: current.position.x + x / current.scale, y: current.position.y + y / current.scale });
   }
 
   function endDrag(event) {
@@ -80,7 +89,8 @@ function DraggableObject({ id, label, onOpen, children, group = false }) {
         x = Math.max(bounds.left + 8 - rect.left, Math.min(bounds.right - 8 - rect.right, x));
         y = Math.max(bounds.top + 34 - rect.top, Math.min(bounds.bottom - 82 - rect.bottom, y));
       }
-      setPosition((previous) => ({ x: previous.x + x, y: previous.y + y }));
+      const scale = sceneScale(event.currentTarget);
+      setPosition((previous) => ({ x: previous.x + x / scale, y: previous.y + y / scale }));
     } else if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       onOpen?.();
@@ -92,6 +102,7 @@ function DraggableObject({ id, label, onOpen, children, group = false }) {
       <div
         className={`desktop-object object-${id}${dragging ? ' is-dragging' : ''}`}
         data-decor-id={id}
+        data-moved={position.x !== 0 || position.y !== 0}
         aria-label={label}
         aria-description="Drag or use the arrow keys to move; press Enter to open."
         role={group ? 'group' : 'button'}
@@ -117,16 +128,6 @@ function DraggableObject({ id, label, onOpen, children, group = false }) {
   );
 }
 
-function IdentityTag({ className, Icon, children, onClick }) {
-  return (
-    <button type="button" className={`desktop-identity ${className}`} onClick={onClick}>
-      <span className="identity-paper">{children}</span>
-      <span className="identity-badge"><Icon size={23} strokeWidth={1.5} /></span>
-      <Paperclip className="identity-paperclip" size={22} strokeWidth={1.5} aria-hidden="true" />
-    </button>
-  );
-}
-
 function timeLabel(seconds) {
   const safe = Math.max(0, Math.floor(Number(seconds) || 0));
   return `${Math.floor(safe / 60)}:${String(safe % 60).padStart(2, '0')}`;
@@ -137,6 +138,7 @@ function IPod({ music, onOpen }) {
   const progress = duration > 0 ? Math.min(100, Math.max(0, elapsed / duration * 100)) : 0;
   return (
     <DraggableObject id="ipod" label="Move and open music player" onOpen={onOpen} group>
+      <CollageArt name="ipod" />
       <div className="ipod-body">
         <button data-desktop-control type="button" className="ipod-screen" aria-label="Open Music" onClick={onOpen}>
           <span className="ipod-status">
@@ -167,17 +169,17 @@ function IPod({ music, onOpen }) {
 }
 
 const dockApps = [
-  { label: 'Music', Icon: Music2, theme: 'music', open: 'music' },
-  { label: 'Mail', Icon: Mail, theme: 'mail', href: 'mailto:lisongyang0130@gmail.com' },
-  { label: 'Messages', Icon: MessageCircle, theme: 'messages', open: 'messages' },
-  { label: 'Notes', Icon: NotebookPen, theme: 'notes', open: 'notes' },
-  { label: 'Photos', Icon: Images, theme: 'photos', open: 'photos' },
-  { label: 'Terminal', Icon: SquareTerminal, theme: 'terminal', open: 'terminal' },
-  { label: 'Blog', Icon: FileText, theme: 'blog', open: 'reading' },
-  { label: 'Projects', Icon: FolderKanban, theme: 'projects', open: 'projects' },
-  { label: 'GitHub', Icon: Github, theme: 'github', href: 'https://github.com/Richard-Yang0130' },
-  { label: '公众号', Icon: MessagesSquare, theme: 'wechat', open: 'profile' },
-  { label: '小红书', Icon: BookOpen, theme: 'xiaohongshu', open: 'profile' },
+  { label: 'Music', theme: 'music', open: 'music' },
+  { label: 'Mail', theme: 'mail', href: 'mailto:lisongyang0130@gmail.com' },
+  { label: 'Messages', theme: 'messages', open: 'messages' },
+  { label: 'Notes', theme: 'notes', open: 'notes' },
+  { label: 'Photos', theme: 'photos', open: 'photos' },
+  { label: 'Terminal', theme: 'terminal', open: 'terminal' },
+  { label: 'Blog', theme: 'blog', open: 'reading' },
+  { label: 'Projects', theme: 'projects', open: 'projects' },
+  { label: 'GitHub', theme: 'github', href: 'https://github.com/Richard-Yang0130' },
+  { label: '公众号', theme: 'wechat', open: 'profile' },
+  { label: '小红书', theme: 'xiaohongshu', open: 'profile' },
 ];
 
 function Dock({ onOpen }) {
@@ -185,6 +187,7 @@ function Dock({ onOpen }) {
   const [bouncing, setBouncing] = useState(null);
   return (
     <nav className="desktop-dock" data-testid="dock" aria-label="Desktop applications" onMouseLeave={() => setHovered(null)}>
+      <span className="dock-paper" aria-hidden="true" />
       {dockApps.map((app, index) => {
         const Control = app.href ? 'a' : 'button';
         const scale = hovered === index ? 1.2 : hovered !== null && Math.abs(index - hovered) === 1 ? 1.08 : 1;
@@ -203,7 +206,7 @@ function Dock({ onOpen }) {
               onAnimationEnd={() => setBouncing(null)}
               onClick={() => { setBouncing(app.label); if (app.open) onOpen?.(app.open); }}
             >
-              <span className={`dock-art dock-${app.theme}`} aria-hidden="true"><app.Icon strokeWidth={1.7} /></span>
+              <span className={`dock-art dock-${app.theme}`} aria-hidden="true" />
             </Control>
             <span className="dock-tooltip" aria-hidden="true">{app.label}</span>
           </div>
@@ -215,29 +218,42 @@ function Dock({ onOpen }) {
 
 export default function Desktop({ onOpen, onNavigate, music }) {
   const open = (name) => () => onOpen?.(name);
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const resize = () => {
+      const compact = window.innerWidth <= 900;
+      const portrait = window.innerHeight >= window.innerWidth;
+      setScale(compact && portrait ? 1 : Math.min(window.innerWidth / 1774, (window.innerHeight - (compact ? 16 : 0)) / 887));
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, []);
   return (
-    <section className="desktop" data-testid="desktop" aria-label="李松洋的桌面">
-      <div className="desktop-wallpaper" aria-hidden="true"><i /><i /></div>
+    <section className="desktop" data-testid="desktop" aria-label="李松洋的桌面" style={{ '--scene-scale': scale }}>
+      <div className="desktop-scene">
+      <div className="desktop-wallpaper" aria-hidden="true"><CollageArt name="corner-left" /><CollageArt name="corner-right" /><CollageArt name="build-note" /><CollageArt name="folder-arrow" /></div>
       <div className="desktop-introduction" aria-label="Introduction">
-        <p className="desktop-greeting">Hi, I’m</p>
+        <p className="desktop-greeting"><CollageArt name="greeting" /><span className="desktop-sr-only">Hi, I’m</span></p>
         <div className="desktop-name">
-          <i className="name-handle top-left" /><i className="name-handle top-right" /><i className="name-handle bottom-left" /><i className="name-handle bottom-right" />
-          <h1><button type="button" aria-label="About Songyang Li" onClick={() => onNavigate?.('about')}>Songyang Li</button></h1>
+          <i className="name-handle top-left" /><i className="name-handle top-middle" /><i className="name-handle top-right" /><i className="name-handle bottom-left" /><i className="name-handle bottom-middle" /><i className="name-handle bottom-right" />
+          <h1><button type="button" aria-label="About Songyang Li" onClick={() => onNavigate?.('about')}><CollageArt name="name" /><span className="desktop-sr-only">Songyang Li</span></button></h1>
         </div>
-        <IdentityTag className="identity-product" Icon={CodeXml} onClick={open('profile')}>AI Product Manager</IdentityTag>
-        <IdentityTag className="identity-agents" Icon={Brain} onClick={() => onNavigate?.('projects')}>Agents &amp; Product</IdentityTag>
+        <button type="button" className="desktop-identity identity-product" aria-label="AI Product Manager" onClick={open('profile')}><CollageArt name="product" /></button>
+        <button type="button" className="desktop-identity identity-agents" aria-label="Agents & Product" onClick={() => onNavigate?.('projects')}><CollageArt name="agents" /></button>
       </div>
       <div className="desktop-objects" data-testid="desktop-decor">
-        <DraggableObject id="evaluation" label="Move and open evaluation lens" onOpen={open('project:modellens')}><img className="decor-art" src={asset('evaluation-lens.png')} alt="Lavender evaluation lens with data bars" draggable={false} /><span className="object-caption">ModelLens</span></DraggableObject>
-        <DraggableObject id="laptop" label="Move and open laptop" onOpen={open('terminal')}><img className="decor-art" src={asset('laptop.png')} alt="Cream laptop with abstract code blocks" draggable={false} /><span className="object-caption">Terminal</span></DraggableObject>
-        <DraggableObject id="chip" label="Move and open embedded chip" onOpen={open('project:embedded')}><img className="decor-art" src={asset('chip.png')} alt="Translucent mint microchip" draggable={false} /><span className="object-caption">Embedded systems</span></DraggableObject>
-        <DraggableObject id="health" label="Move and open Aevis health orb" onOpen={open('project:aevis')}><div className="health-art decor-art"><div className="health-orbit" /><div className="health-globe"><HeartPulse strokeWidth={1.25} /><span className="health-spark" /></div><span className="health-base" /><strong>aevis</strong></div><span className="object-caption">Aevis · AI Health</span></DraggableObject>
-        <DraggableObject id="draft" label="Move and open article draft" onOpen={open('reading')}><div className="article-prop decor-art"><span className="paper-kicker">PRODUCT NOTES</span><strong>洋说 AI</strong><span className="paper-subtitle">记录产品，也记录思考。</span><div className="paper-lines"><i /><i /><i /><i /><i /></div><FileText className="paper-seal" /></div><span className="object-caption">文章与思考</span></DraggableObject>
-        <DraggableObject id="note" label="Move and open PRD note" onOpen={open('notes')}><div className="prd-prop decor-art"><Paperclip className="note-clip" strokeWidth={1.3} /><strong>PRD</strong><span><Check />需求</span><span><Check />场景</span><span><Check />验证</span></div><span className="object-caption">产品便笺</span></DraggableObject>
-        <DraggableObject id="folder" label="Move and open project folder" onOpen={open('projects')}><div className="folder-prop decor-art"><span className="desktop-folder-paper"><i /><i /><i /></span><span className="desktop-folder-front"><FolderKanban /><strong>Projects</strong></span></div><span className="object-caption">项目</span></DraggableObject>
+        <DraggableObject id="evaluation" label="Move and open evaluation lens" onOpen={open('project:modellens')}><CollageArt name="evaluation" /><span className="object-caption">ModelLens</span></DraggableObject>
+        <DraggableObject id="laptop" label="Move and open laptop" onOpen={open('terminal')}><CollageArt name="laptop" /><span className="object-caption">Terminal</span></DraggableObject>
+        <DraggableObject id="chip" label="Move and open embedded chip" onOpen={open('project:embedded')}><CollageArt name="chip" /><span className="object-caption">Embedded systems</span></DraggableObject>
+        <DraggableObject id="health" label="Move and open Aevis health orb" onOpen={open('project:aevis')}><CollageArt name="health" /><span className="object-caption">Aevis · AI Health</span></DraggableObject>
+        <DraggableObject id="draft" label="Move and open article draft" onOpen={open('reading')}><CollageArt name="draft" /><span className="object-caption">文章与思考</span></DraggableObject>
+        <DraggableObject id="note" label="Move and open PRD note" onOpen={open('notes')}><CollageArt name="note" /><span className="object-caption">产品便笺</span></DraggableObject>
+        <DraggableObject id="folder" label="Move and open project folder" onOpen={open('projects')}><CollageArt name="folder" /><span className="object-caption">项目</span></DraggableObject>
         <IPod music={music} onOpen={open('music')} />
       </div>
       <Dock onOpen={onOpen} />
+      </div>
     </section>
   );
 }

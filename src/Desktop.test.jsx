@@ -74,14 +74,24 @@ describe('desktop interaction', () => {
     expect(onOpen).toHaveBeenCalledWith('music');
   });
 
-  it('uses only the three original PNG props and has no portrait or reference-owner content', () => {
+  it('uses the approved collage artwork for separate controls without reference-owner content', () => {
     const { container } = render(<Desktop />);
-    expect(container.querySelectorAll('img')).toHaveLength(3);
-    for (const image of container.querySelectorAll('img')) {
-      const path = image.getAttribute('src').replace(import.meta.env.BASE_URL, '');
-      expect(existsSync(resolve('public', path)), path).toBe(true);
-      expect(path).toMatch(/^desktop\/original\/(laptop|chip|evaluation-lens)\.png$/);
-    }
+    expect(existsSync(resolve('public/desktop/paper/approved-collage.png'))).toBe(true);
+    expect(container.querySelectorAll('[data-decor-id]')).toHaveLength(8);
+    expect(container.querySelectorAll('.dock-control')).toHaveLength(11);
     expect(container.innerHTML).not.toMatch(/Elliot|elliothux|portrait|avatar|fujifilm|macintosh|tardis|demogorgon|beach|bucket|desktop\/desktop|lofty-cloud|figpod/i);
+  });
+
+  it('keeps pointer movement accurate when the desktop canvas is scaled', () => {
+    const { container } = render(<Desktop />);
+    const scene = container.querySelector('.desktop-scene');
+    Object.defineProperty(scene, 'offsetWidth', { value: 1774 });
+    scene.getBoundingClientRect = () => ({ width: 887 });
+    const lens = screen.getByRole('button', { name: 'Move and open evaluation lens' });
+    fireEvent.pointerDown(lens, { button: 0, clientX: 100, clientY: 100 });
+    fireEvent.pointerMove(lens, { clientX: 140, clientY: 120 });
+    fireEvent.pointerUp(lens, { clientX: 140, clientY: 120 });
+    expect(lens.style.getPropertyValue('--move-x')).toBe('80px');
+    expect(lens.style.getPropertyValue('--move-y')).toBe('40px');
   });
 });
