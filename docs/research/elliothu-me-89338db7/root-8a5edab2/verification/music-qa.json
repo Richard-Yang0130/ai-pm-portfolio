@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "src": "http://127.0.0.1:4173/ai-pm-portfolio/audio/toxic-till-the-end.mp3",
+    "duration": 156.685737,
+    "title": "toxic till the end",
+    "artist": "ROSÉ"
+  },
+  "ipodPlayPause": true,
+  "volume": 0.5,
+  "seek": 78.3,
+  "loop": {
+    "time": 0.021299,
+    "playing": true
+  }
+}

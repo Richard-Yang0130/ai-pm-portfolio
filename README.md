@@ -25,7 +25,7 @@ npm run preview
 
 ## 更新内容
 
-- `src/content.js`：个人简介、六项项目、便笺、两首本地氛围音轨。项目带详情，ModelLens 有公开仓库入口。
+- `src/content.js`：个人简介、六项项目、便笺、用户提供的本地背景音乐。项目带详情，ModelLens 有公开仓库入口。
 - `src/articles.js`：原有两篇文章，支持 `#article-<slug>` 直达阅读窗口。
 - `public/desktop/original/`：三张内置 imagegen 原创透明插画及完整提示词。
 - `public/projects/`：实际内容成果。ModelLens、Aevis 等项目采用本站原创图示，页面不放人物头像。
@@ -34,3 +34,5 @@ npm run preview
 来信会在访客自己的邮件应用中打开，由访客确认发送。便笺是个人内容，本版没有公共留言数据库。终端是站内导航与个人介绍，可以输入 `help`、`whoami`、`projects`、`reading`、`contact`、`about`、`open`、`clear`。
 
 当前设计、素材来源和验证结果保存在 `docs/research/`。旧的 `/cases/unstress/` 地址保留供历史链接使用；首页项目采用当前简历中的 Aevis。
+
+背景音乐为用户提供的 ROSÉ《toxic till the end》MP3，保留 iPod 控件和单曲循环。

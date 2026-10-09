@@ -16,7 +16,7 @@ src/
 public/
   desktop/            原创插画、完整提示词、通用字体
   projects/           个人内容成果
-  audio/              两首本地氛围音轨
+  audio/              用户提供的 MP3 背景音乐
   favicon.svg         个站图标
   cases/unstress/     兼容旧的案例路径
 docs/

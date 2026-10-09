@@ -83,6 +83,5 @@ export const notes = [
 ];
 
 export const tracks = [
-  { title: 'Blue Hour', artist: '本站氛围音乐', cover: asset('projects/content-cover.png'), src: asset('audio/blue-hour.wav') },
-  { title: 'Quiet Desktop', artist: '本站氛围音乐', cover: asset('desktop/original/evaluation-lens.png'), src: asset('audio/quiet-desktop.wav') },
+  { title: 'toxic till the end', artist: 'ROSÉ', cover: asset('desktop/original/evaluation-lens.png'), src: asset('audio/toxic-till-the-end.mp3') },
 ];
