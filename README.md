@@ -2,7 +2,7 @@
 
 李松洋的个站，发布地址：[richard-yang0130.github.io/ai-pm-portfolio](https://richard-yang0130.github.io/ai-pm-portfolio/)。
 
-借鉴桌面式个站的交互，围绕李松洋的 AI 产品、评测与内容创作重新设计视觉：暖纸色、薄荷与淡紫光晕，原创电脑、芯片、评测镜头与纸稿。页面不使用头像、人物照片、参考作者内容或影视摆件。个人简介、文章和六项项目来自现有站点与最新版简历。
+借鉴桌面式个站的交互，围绕李松洋的 AI 产品、评测与内容创作重新设计视觉：暖纸色、薄荷与淡紫光晕，原创电脑、芯片、评测镜头与纸稿。页面不使用个人头像、参考作者内容或影视摆件。个人简介、文章和六项项目来自现有站点与最新版简历。
 
 ## 本地运行
 
@@ -36,3 +36,5 @@ npm run preview
 当前设计、素材来源和验证结果保存在 `docs/research/`。旧的 `/cases/unstress/` 地址保留供历史链接使用；首页项目采用当前简历中的 Aevis。
 
 背景音乐为用户提供的 ROSÉ《toxic till the end》MP3，保留 iPod 控件和单曲循环。
+
+iPod 与音乐窗口使用歌曲对应的《rosie》官方专辑封面，来源记录：docs/research/music/cover-source.json。

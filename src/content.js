@@ -83,5 +83,5 @@ export const notes = [
 ];
 
 export const tracks = [
-  { title: 'toxic till the end', artist: 'ROSÉ', cover: asset('desktop/original/evaluation-lens.png'), src: asset('audio/toxic-till-the-end.mp3') },
+  { title: 'toxic till the end', artist: 'ROSÉ', cover: asset('audio/rosie-cover.jpg'), src: asset('audio/toxic-till-the-end.mp3') },
 ];
