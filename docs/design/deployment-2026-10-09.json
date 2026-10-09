@@ -1,0 +1,53 @@
+{
+  "verifiedAt": "2026-10-09T07:36:29.696Z",
+  "sourceCommit": "826bd0e",
+  "pagesCommit": "71bb7c24a2f1de1e3dbf05fba2d9ddd39a134884",
+  "pagesBuildStatus": "built",
+  "initial": {
+    "url": "https://richard-yang0130.github.io/ai-pm-portfolio/",
+    "viewport": [
+      1774,
+      887
+    ],
+    "js": [
+      "https://richard-yang0130.github.io/ai-pm-portfolio/assets/index-B43xf8Np.js"
+    ],
+    "css": [
+      "https://richard-yang0130.github.io/ai-pm-portfolio/assets/index-DvU4G-9H.css"
+    ],
+    "props": 8,
+    "dock": 11,
+    "projects": [
+      "华创智擎技术支持平台",
+      "AI 合规审核数字员工",
+      "机载雷达嵌入式高可靠系统",
+      "Aevis",
+      "ModelLens",
+      "AI 内容价值判断与多平台自动化运营系统"
+    ],
+    "art": "url(\"https://richard-yang0130.github.io/ai-pm-portfolio/desktop/paper/approved-collage.png\")",
+    "audio": {
+      "src": "https://richard-yang0130.github.io/ai-pm-portfolio/audio/toxic-till-the-end.mp3",
+      "duration": 156.685737,
+      "error": null
+    },
+    "cover": "https://richard-yang0130.github.io/ai-pm-portfolio/audio/rosie-cover.jpg",
+    "errors": []
+  },
+  "playback": {
+    "paused": false,
+    "elapsed": 0.386339,
+    "indicator": "playing",
+    "error": null
+  },
+  "pausedAfter": true,
+  "directory": [
+    "华创智擎技术支持平台",
+    "AI 合规审核数字员工",
+    "机载雷达嵌入式高可靠系统",
+    "Aevis",
+    "ModelLens",
+    "AI 内容价值判断与多平台自动化运营系统"
+  ],
+  "errorsAfter": []
+}

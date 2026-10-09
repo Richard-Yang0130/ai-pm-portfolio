@@ -53,4 +53,8 @@ P3: native navigation/player glyphs have slight raster-versus-font differences; 
 - [x] Capture and compare equal viewport/state, including focused iPod/Dock.
 - [x] Fix all actionable P0/P1/P2 issues; recapture and retest.
 - [x] Browser interaction checks, unit tests, build and static review.
-- [ ] Publish and read back the current bundle on GitHub Pages (record separately after deployment).
+- [x] Publish and read back the current bundle on GitHub Pages; record in `docs/design/deployment-2026-10-09.json`.
+
+## Online verification
+
+GitHub Pages built `71bb7c24a2f1de1e3dbf05fba2d9ddd39a134884` successfully. The ordinary production URL served `index-B43xf8Np.js` and `index-DvU4G-9H.css`, matching source implementation commit `826bd0e`. In Ego, the two paper images decoded, the official cover loaded, all 8 props / 11 Dock controls / 6 resume projects were present, native audio advanced and paused, and the project directory opened correctly. Browser errors and native audio error were empty. Screenshot: `/Users/lisongyang/Documents/Codex/2026-10-08/wo-xi/outputs/design-qa/live-homepage.png`; full record: `docs/design/deployment-2026-10-09.json`.
